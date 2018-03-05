@@ -3,7 +3,7 @@
 
 ## Domain
 
-This problem uses the Ames, Iowa housing data set is a canonical data set that is used in teaching data science. In 2011, Dean De Cock cleaned and modified the data provided by the city's Assessor's office. It included housing sales in Ames, Iowa from 2006 to 2010 in an excel sheet with 113 columns/variables.
+This problem uses the canonical Ames, Iowa housing data set that is often used in teaching data science. In 2011, Dean De Cock cleaned and modified the data provided by the Ames' Assessor's office. It included housing sales in the city from 2006 to 2010 in an excel sheet with 113 columns/variables.
 
 
 ## Problem Statement
