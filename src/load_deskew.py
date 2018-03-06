@@ -61,10 +61,8 @@ def gelman_scale(dataframe):
 
 housing_one_hot_df = pd.get_dummies(housing_df) 
 
-scaler = StandardScaler()
 housing_log_df = np.log(housing_one_hot_df + 1)
 housing_gelman_df = apply_scale(housing_log_df, gelman_scale)
-scaler.fit(housing_gelman_df)
 
 #outliers = [198, 524, 1174, 1183, 1299, 186, 692, 770, 
 #            179, 225, 804, 889, 1387, 497]
