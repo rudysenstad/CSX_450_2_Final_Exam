@@ -48,23 +48,17 @@ for feature in empty_means_without:
 
 housing_df.dropna(inplace=True)
 
-def apply_scale(dataframe, scaling_function):
-    numerical_df = dataframe.select_dtypes(include=[float])
-    print(numerical_df.columns)
-    numerical_df = scaling_function(numerical_df)
-    tmp_df = dataframe.copy()
-    tmp_df[numerical_df.columns] = numerical_df
-    return tmp_df
+housing_orig_df = housing_df.copy()
+housing_num_df = housing_df.select_dtypes(exclude=['category'])
+numeric_features = housing_num_df.columns
+numeric_data_df = housing_df[numeric_features].copy()
 
-def gelman_scale(dataframe):
-    return (dataframe - dataframe.mean())/(2*dataframe.std())
+# deskew
+numeric_log_df = np.log(numeric_data_df + 1)
 
+# Gelman scale
+numeric_scaled_df = (numeric_log_df - numeric_log_df.mean())/(2*numeric_log_df.std())
+housing_df[numeric_features] = numeric_scaled_df
+
+# One-hot encode
 housing_one_hot_df = pd.get_dummies(housing_df) 
-
-housing_log_df = np.log(housing_one_hot_df + 1)
-housing_gelman_df = apply_scale(housing_log_df, gelman_scale)
-
-#outliers = [198, 524, 1174, 1183, 1299, 186, 692, 770, 
-#            179, 225, 804, 889, 1387, 497]
-#numeric_final_df = housing_final_df.drop(outliers, axis=0)
-#housing_ouliers_removed_df = housing_df.drop(outliers, axis=0)
